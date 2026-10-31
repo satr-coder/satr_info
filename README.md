@@ -1,1 +1,0 @@
-# satr_info
