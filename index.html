@@ -1,0 +1,424 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>سطر</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: white editorial page. Hero = definition of programming (right) + animated multi-language editor (left). Then a "Hello, World" grid in six languages, the single article, footer. */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --tint: #f7f3ff;
+  --fg: #1b1530;
+  --muted: #635b7e;
+  --line: #e8e2f7;
+  --accent: #6d28d9;
+  --accent-soft: #ede4ff;
+  --accent-fg: #ffffff;
+  --mark: #e2d4ff;
+  --code-bg: #f9f7ff;
+  --code-fg: #2a1f4a;
+  --code-dim: #7a6fa0;
+  --code-kw: #7c2dd6;
+  --code-str: #0f7a55;
+  --code-num: #b45309;
+  --code-fn: #1d5fc4;
+  --code-ln: #b3a8d6;
+  --ok: #0f7a55;
+  --font-display: "Reem Kufi", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.75;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; text-wrap: balance; margin: 0; line-height: 1.25; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.eyebrow { font-size: 14px; letter-spacing: 0.04em; color: var(--accent); font-weight: 600; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 600; font-size: 16px; padding: 10px 22px; border-radius: 6px; border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-fg); text-decoration: none; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(109, 40, 217, .6); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); box-shadow: none; }
+
+/* header */
+header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.brand .name { font-family: var(--font-display); font-size: 30px; font-weight: 700; line-height: 1; }
+.brand .cursor { display: inline-block; width: 10px; height: 26px; background: var(--accent); transform: translateY(5px); animation: blink 1.1s steps(1) infinite; }
+nav.main { display: flex; gap: 24px; flex-wrap: wrap; font-size: 16px; font-weight: 500; }
+nav.main a { text-decoration: none; color: var(--muted); padding-block: 4px; background: linear-gradient(var(--accent), var(--accent)) no-repeat right bottom / 0 2px; transition: background-size .25s ease, color .25s ease; }
+nav.main a:hover { color: var(--fg); background-size: 100% 2px; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr); gap: 56px; align-items: center; padding-block: 64px 72px; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 58px); margin-block: 14px 18px; animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.hero h1 mark { color: inherit; padding-inline: 6px; background: linear-gradient(var(--mark), var(--mark)) no-repeat right 78% / 0% 38%; animation: sweep .9s .5s cubic-bezier(.3,.7,.2,1) forwards; }
+.hero .lead { color: var(--muted); font-size: 19px; max-width: 32em; animation: rise .7s .12s cubic-bezier(.2,.7,.2,1) both; }
+.hero .lead strong { color: var(--fg); font-weight: 600; }
+.analogy { margin-top: 28px; border-top: 1px solid var(--line); animation: rise .7s .24s cubic-bezier(.2,.7,.2,1) both; }
+.analogy div { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; padding-block: 12px; border-bottom: 1px solid var(--line); font-size: 16px; }
+.analogy b { font-family: var(--font-display); color: var(--accent); font-size: 18px; font-weight: 700; }
+.analogy span { color: var(--muted); }
+.hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; animation: rise .7s .36s cubic-bezier(.2,.7,.2,1) both; }
+
+/* editor */
+.visual { position: relative; isolation: isolate; min-width: 0; animation: rise .8s .2s cubic-bezier(.2,.7,.2,1) both; }
+.visual::before { content: ""; position: absolute; inset: -28px -24px; z-index: -1; border-radius: 40px; background: radial-gradient(60% 60% at 70% 30%, rgba(124, 58, 237, .20), transparent 70%), radial-gradient(50% 50% at 20% 80%, rgba(167, 139, 250, .22), transparent 70%); filter: blur(18px); animation: drift 9s ease-in-out infinite alternate; }
+.editor { background: var(--code-bg); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 60px -30px rgba(76, 29, 149, .35), 0 2px 0 rgba(255,255,255,.8) inset; min-width: 0; }
+.editor .bar { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-bottom: 1px solid var(--line); background: #fff; direction: ltr; }
+.dots { display: flex; gap: 6px; flex: none; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: block; }
+.dots i:first-child { background: #c4a1ff; }
+.tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1 1 auto; min-width: 0; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tabs button { flex: none; font: 500 13px var(--font-mono); background: transparent; color: var(--code-dim); border: 0; border-radius: 6px; padding: 6px 11px; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.tabs button:hover { color: var(--fg); }
+.tabs button[aria-selected="true"] { background: var(--accent-soft); color: var(--accent); }
+.run { flex: none; font: 600 13px var(--font-mono); background: var(--accent); color: #fff; border: 0; border-radius: 6px; padding: 6px 14px; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease; }
+.run:hover { transform: translateY(-1px); box-shadow: 0 6px 14px -6px rgba(109, 40, 217, .7); }
+.editor .file { display: flex; justify-content: space-between; direction: ltr; padding: 8px 16px 0; font: 400 12px var(--font-mono); color: var(--code-dim); }
+pre.code { margin: 0; padding: 10px 16px 18px; font: 400 14.5px/1.9 var(--font-mono); direction: ltr; text-align: left; overflow-x: auto; counter-reset: ln; min-height: 12.5em; tab-size: 4; }
+pre.code .l { display: block; white-space: pre; min-height: 1.9em; }
+pre.code .l::before { counter-increment: ln; content: counter(ln); display: inline-block; width: 2ch; margin-right: 2ch; color: var(--code-ln); text-align: right; }
+.caret { display: inline-block; width: 2px; height: 1.15em; background: var(--accent); vertical-align: text-bottom; margin-left: 1px; animation: blink 1s steps(1) infinite; }
+.k { color: var(--code-kw); font-weight: 500; } .s { color: var(--code-str); } .n { color: var(--code-num); } .f { color: var(--code-fn); } .c { color: var(--code-dim); font-style: italic; }
+.out { border-top: 1px solid var(--line); background: #fff; padding: 12px 16px 14px; font: 400 14px/1.7 var(--font-mono); direction: ltr; text-align: left; color: var(--code-dim); min-height: 7.4em; }
+.out .cmd { display: block; }
+.out .cmd::before { content: "$ "; color: var(--accent); }
+.out .res { display: block; color: var(--ok); font-weight: 500; opacity: 0; animation: rise .35s ease forwards; }
+.out .hint { color: var(--code-dim); }
+
+/* sections */
+section { padding-block: 64px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.sec-head h2 { font-size: clamp(28px, 3.6vw, 40px); }
+.sec-head p { color: var(--muted); max-width: 30em; }
+
+/* hello grid */
+.hello { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.hcard { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; min-width: 0; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.hcard:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 18px 36px -20px rgba(109, 40, 217, .55); }
+.hcard .top { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--line); direction: ltr; }
+.hcard .top b { font: 600 15px var(--font-mono); color: var(--fg); }
+.hcard .top .copy { font: 500 12px var(--font-mono); color: var(--accent); background: var(--accent-soft); border: 0; border-radius: 5px; padding: 4px 10px; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.hcard .top .copy:hover { background: var(--accent); color: #fff; }
+.hcard pre { margin: 0; padding: 18px 16px; background: var(--code-bg); font: 400 14px/1.8 var(--font-mono); direction: ltr; text-align: left; overflow-x: auto; white-space: pre; }
+.hcard .desc { padding: 12px 16px 14px; font-size: 15px; color: var(--muted); border-top: 1px solid var(--line); }
+
+/* article */
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; text-decoration: none; border-top: 1.5px solid var(--fg); padding-top: 28px; }
+.feature .meta { color: var(--muted); font-size: 14px; display: flex; gap: 12px; margin-bottom: 8px; }
+.feature .meta .chip { font-family: var(--font-mono); color: var(--accent); direction: ltr; }
+.feature h3 { font-size: clamp(28px, 4vw, 44px); margin-bottom: 10px; transition: color .2s ease; }
+.feature p { color: var(--muted); font-size: 18px; max-width: 36em; }
+.feature:hover h3 { color: var(--accent); }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px 36px; color: var(--muted); font-size: 15px; }
+
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes sweep { to { background-size: 100% 38%; } }
+@keyframes drift { from { transform: translate3d(-8px, 4px, 0) scale(1); } to { transform: translate3d(10px, -6px, 0) scale(1.04); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .hero h1 mark { background-size: 100% 38%; }
+  .out .res { opacity: 1; }
+}
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 40px 48px; }
+  .hello { grid-template-columns: minmax(0, 1fr); }
+  .feature { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  section { padding-block: 48px; }
+  .analogy div { grid-template-columns: 96px minmax(0, 1fr); }
+}
+@media (min-width: 881px) and (max-width: 1020px) {
+  .hello { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+</style>
+
+<div class="wrap" dir="rtl" lang="ar">
+  <header class="top">
+    <a class="brand" href="#top" aria-label="سطر، الصفحة الرئيسية">
+      <span class="name">سطر</span><span class="cursor" aria-hidden="true"></span>
+    </a>
+    <nav class="main" aria-label="التنقل الرئيسي">
+      <a href="#top">ما هي البرمجة؟</a>
+      <a href="#hello">بست لغات</a>
+      <a href="#article">المقال</a>
+      <a href="#guide">دليل البداية</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <span class="eyebrow">مدخل إلى البرمجة</span>
+        <h1>ما هي <mark>البرمجة</mark>؟</h1>
+        <p class="lead">البرمجة هي <strong>كتابة تعليمات مرتّبة يفهمها الحاسوب</strong> لينفّذ مهمة محددة. الحاسوب سريع جدًا لكنه لا يخمّن، فكل ما تريده يجب أن تكتبه خطوة بخطوة بلغة يفهمها، تسمى لغة برمجة.</p>
+        <div class="analogy">
+          <div><b>المكوّنات</b><span>البيانات: أرقام ونصوص وصور تدخل إلى البرنامج.</span></div>
+          <div><b>الخطوات</b><span>الشيفرة: شروط وحلقات تحدد ماذا يحدث ولمن.</span></div>
+          <div><b>الطبق</b><span>النتيجة: ما يظهر لك على الشاشة في النهاية.</span></div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="#hello">شاهد الكود</a>
+          <a class="btn ghost" href="#article">اقرأ المقال</a>
+        </div>
+      </div>
+
+      <div class="visual">
+        <div class="editor" aria-label="مثال تفاعلي: طباعة الأعداد الزوجية من ١ إلى ٦ بلغات مختلفة">
+          <div class="bar">
+            <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="tabs" role="tablist" aria-label="لغة المثال" id="tabs"></div>
+            <button class="run" id="run" type="button">▶ شغّل</button>
+          </div>
+          <div class="file"><span id="fname">main.py</span><span>اطبع الأعداد الزوجية من 1 إلى 6</span></div>
+          <pre class="code" id="code" aria-label="الشيفرة"></pre>
+          <div class="out" id="out" aria-live="polite"><span class="hint"># اضغط «شغّل» لترى الناتج</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="hello">
+    <div class="sec-head">
+      <h2>أول برنامج بست لغات</h2>
+      <p>كل لغة تقول «مرحبًا» بطريقتها. انسخ أي مثال وجرّبه.</p>
+    </div>
+    <div class="hello" id="grid"></div>
+  </section>
+
+  <section id="article">
+    <div class="sec-head"><h2>المقال</h2></div>
+    <a class="feature" href="https://infomoh.github.io/info/" target="_blank" rel="noopener">
+      <div>
+        <div class="meta"><span class="chip">C++ / C#</span><span>مقارنة</span></div>
+        <h3>C++ مقابل C#: أيهما تتعلم؟</h3>
+        <p>مقارنة بين اللغتين في طريقة التنفيذ وإدارة الذاكرة والأداء وصعوبة التعلم، لتختار الأنسب لك.</p>
+      </div>
+      <span class="btn">اقرأ المقال</span>
+    </a>
+  </section>
+
+  <section id="guide">
+    <div class="sec-head">
+      <h2>من أين تبدأ؟</h2>
+      <p>دليل عربي مجاني يرشّح لك سبعة مواقع لتعلّم البرمجة بالتطبيق والمشاريع الصغيرة.</p>
+    </div>
+    <a class="feature" href="https://infomoh.netlify.app/" target="_blank" rel="noopener">
+      <div>
+        <div class="meta"><span class="chip">INFOMOH</span><span>دليل</span></div>
+        <h3>INFOMOH: دليلك لتعلّم البرمجة</h3>
+        <p>freeCodeCamp وW3Schools وThe Odin Project وHarvard CS50 وغيرها، مع خطة من ثلاث خطوات: اختر هدفًا واحدًا، تعلّم وتمرّن، ثم أنهِ مشروعًا صغيرًا.</p>
+      </div>
+      <span class="btn">افتح الدليل</span>
+    </a>
+  </section>
+
+  <footer>© ٢٠٢٦ سطر</footer>
+</div>
+
+<script>
+(function () {
+  var REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var LANGS = [
+    { id: "py", label: "Python", file: "main.py", com: "#",
+      kw: "for in if range print def return",
+      code: "for n in range(1, 7):\n    if n % 2 == 0:\n        print(n)",
+      cmd: "python main.py", out: ["2", "4", "6"] },
+    { id: "js", label: "JavaScript", file: "main.js", com: "//",
+      kw: "for let if const function return",
+      code: "for (let n = 1; n <= 6; n++) {\n  if (n % 2 === 0) console.log(n);\n}",
+      cmd: "node main.js", out: ["2", "4", "6"] },
+    { id: "cpp", label: "C++", file: "main.cpp", com: "//", pre: true,
+      kw: "for int if return using namespace",
+      code: "#include <iostream>\n\nint main() {\n  for (int n = 1; n <= 6; n++)\n    if (n % 2 == 0) std::cout << n << \"\\n\";\n}",
+      cmd: "g++ main.cpp -o main && ./main", out: ["2", "4", "6"] },
+    { id: "cs", label: "C#", file: "Program.cs", com: "//",
+      kw: "for int if var",
+      code: "for (int n = 1; n <= 6; n++)\n{\n    if (n % 2 == 0) Console.WriteLine(n);\n}",
+      cmd: "dotnet run", out: ["2", "4", "6"] },
+    { id: "java", label: "Java", file: "Main.java", com: "//",
+      kw: "for int if class public static void",
+      code: "for (int n = 1; n <= 6; n++) {\n    if (n % 2 == 0) System.out.println(n);\n}",
+      cmd: "java Main.java", out: ["2", "4", "6"] },
+    { id: "sql", label: "SQL", file: "query.sql", com: "--",
+      kw: "SELECT FROM WHERE AND OR",
+      code: "SELECT n\nFROM numbers\nWHERE n % 2 = 0\n  AND n <= 6;",
+      cmd: "sqlite3 data.db < query.sql", out: ["2", "4", "6"] }
+  ];
+
+  var HELLO = [
+    { label: "Python", code: 'print("Hello, World!")', desc: "سطر واحد وينتهي. لغة مناسبة للبداية.", kw: "print", com: "#" },
+    { label: "JavaScript", code: 'console.log("Hello, World!");', desc: "تعمل في المتصفح وتجعل الصفحات تفاعلية.", kw: "const", com: "//" },
+    { label: "C++", code: '#include <iostream>\n\nint main() {\n  std::cout << "Hello, World!";\n}', desc: "أداء عالٍ وتحكّم كامل في الذاكرة.", kw: "int return", com: "//", pre: true },
+    { label: "C#", code: 'Console.WriteLine("Hello, World!");', desc: "لغة مايكروسوفت للتطبيقات والألعاب.", kw: "var", com: "//" },
+    { label: "Java", code: 'System.out.println("Hello, World!");', desc: "تعمل على أنظمة كثيرة بلا تعديل.", kw: "class public static void", com: "//" },
+    { label: "SQL", code: "SELECT 'Hello, World!';", desc: "لغة الاستعلام عن قواعد البيانات.", kw: "SELECT FROM", com: "--" }
+  ];
+
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  /* Split source into lines of {t, c} tokens */
+  function tokenize(lang) {
+    var kws = {};
+    lang.kw.split(" ").forEach(function (w) { kws[w] = true; });
+    var com = lang.com.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&");
+    var pat = "(" + com + ".*)|(\"(?:[^\"\\\\]|\\\\.)*\"|'[^']*')|(\\b\\d+\\b)|([A-Za-z_][A-Za-z0-9_]*)|(\\s+|.)";
+    if (lang.pre) pat = "(#include.*)|" + pat;
+    var re = new RegExp(pat, "g");
+    var toks = [], m;
+    var src = lang.code;
+    while ((m = re.exec(src))) {
+      var pre, cm, st, nu, id, ot;
+      if (lang.pre) { pre = m[1]; cm = m[2]; st = m[3]; nu = m[4]; id = m[5]; ot = m[6]; }
+      else { cm = m[1]; st = m[2]; nu = m[3]; id = m[4]; ot = m[5]; }
+      if (pre) toks.push({ t: pre, c: "k" });
+      else if (cm) toks.push({ t: cm, c: "c" });
+      else if (st) toks.push({ t: st, c: "s" });
+      else if (nu) toks.push({ t: nu, c: "n" });
+      else if (id) {
+        var next = src.charAt(re.lastIndex);
+        toks.push({ t: id, c: kws[id] ? "k" : (next === "(" ? "f" : "") });
+      } else toks.push({ t: ot, c: "" });
+    }
+    var lines = [[]];
+    toks.forEach(function (tk) {
+      var parts = tk.t.split("\n");
+      parts.forEach(function (p, i) {
+        if (i > 0) lines.push([]);
+        if (p) lines[lines.length - 1].push({ t: p, c: tk.c });
+      });
+    });
+    return lines;
+  }
+
+  function renderLines(lines, n, caret) {
+    var left = n, html = "";
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i], len = 0, h = "", vis, k;
+      for (k = 0; k < line.length; k++) len += line[k].t.length;
+      vis = Math.min(left, len);
+      for (k = 0; k < line.length && vis > 0; k++) {
+        var tk = line[k], take = Math.min(tk.t.length, vis), txt = esc(tk.t.slice(0, take));
+        h += tk.c ? '<span class="' + tk.c + '">' + txt + "</span>" : txt;
+        vis -= take;
+      }
+      var last = left <= len;
+      if (caret && last) h += '<i class="caret"></i>';
+      html += '<span class="l">' + h + "</span>";
+      if (last) break;
+      left -= len + 1;
+    }
+    return html;
+  }
+
+  /* ---------- hero editor ---------- */
+  var tabsEl = document.getElementById("tabs");
+  var codeEl = document.getElementById("code");
+  var outEl = document.getElementById("out");
+  var fnameEl = document.getElementById("fname");
+  var current = 0, token = 0, timer = null;
+  LANGS.forEach(function (l) { l.lines = tokenize(l); l.total = l.code.length; });
+
+  LANGS.forEach(function (l, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.setAttribute("role", "tab"); b.id = "tab-" + l.id;
+    b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    b.textContent = l.label;
+    b.addEventListener("click", function () { select(i); });
+    tabsEl.appendChild(b);
+  });
+
+  function showOutput(l) {
+    var h = '<span class="cmd">' + esc(l.cmd) + "</span>";
+    l.out.forEach(function (r, i) {
+      h += '<span class="res" style="animation-delay:' + (180 + i * 220) + 'ms">' + esc(r) + "</span>";
+    });
+    outEl.innerHTML = h;
+  }
+
+  function type(l, myToken) {
+    var n = 0;
+    function step() {
+      if (myToken !== token) return;
+      n++;
+      codeEl.innerHTML = renderLines(l.lines, n, true);
+      if (n < l.total) {
+        var ch = l.code.charAt(n - 1);
+        timer = setTimeout(step, ch === "\n" ? 140 : (/\s/.test(ch) ? 8 : 24));
+      } else {
+        codeEl.innerHTML = renderLines(l.lines, l.total, false);
+        timer = setTimeout(function () { if (myToken === token) showOutput(l); }, 450);
+      }
+    }
+    step();
+  }
+
+  function select(i) {
+    current = i; token++;
+    clearTimeout(timer);
+    var l = LANGS[i];
+    Array.prototype.forEach.call(tabsEl.children, function (b, k) {
+      b.setAttribute("aria-selected", k === i ? "true" : "false");
+    });
+    fnameEl.textContent = l.file;
+    outEl.innerHTML = '<span class="hint"># اضغط «شغّل» لترى الناتج</span>';
+    if (REDUCED) {
+      codeEl.innerHTML = renderLines(l.lines, l.total, false);
+    } else {
+      codeEl.innerHTML = '<span class="l"><i class="caret"></i></span>';
+      type(l, token);
+    }
+  }
+
+  document.getElementById("run").addEventListener("click", function () {
+    var l = LANGS[current];
+    clearTimeout(timer); token++;
+    codeEl.innerHTML = renderLines(l.lines, l.total, false);
+    showOutput(l);
+  });
+
+  select(0);
+
+  /* ---------- hello grid ---------- */
+  var grid = document.getElementById("grid");
+  HELLO.forEach(function (h) {
+    var lines = tokenize({ code: h.code, kw: h.kw, com: h.com, pre: h.pre });
+    var html = renderLines(lines, h.code.length, false).replace(/<span class="l">/g, "<span>").replace(/<\/span>(?=<span>)/g, "</span>\n");
+    var card = document.createElement("article");
+    card.className = "hcard";
+    card.innerHTML = '<div class="top"><b>' + esc(h.label) + '</b><button class="copy" type="button">نسخ</button></div>' +
+      "<pre>" + html + "</pre>" + '<div class="desc">' + esc(h.desc) + "</div>";
+    var btn = card.querySelector(".copy");
+    btn.addEventListener("click", function () {
+      function done(ok) {
+        btn.textContent = ok ? "تم النسخ" : "حدّد الكود وانسخه";
+        setTimeout(function () { btn.textContent = "نسخ"; }, 1600);
+      }
+      try {
+        navigator.clipboard.writeText(h.code).then(function () { done(true); }, function () { done(false); });
+      } catch (e) { done(false); }
+    });
+    grid.appendChild(card);
+  });
+})();
+</script>
+
+</body></html>
